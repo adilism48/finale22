@@ -21,6 +21,15 @@ section {
     padding: 100px 0;
 }
 
+.container {
+    font-size: 20px;
+    color: white;
+}
+
+.nav-link {
+    color: white;
+}
+
 .form-back {
     background-color: var(--color3);
     padding: 25px 25px;
@@ -28,7 +37,7 @@ section {
 }
 
 header {
-    padding-top: 240px;
+    padding-top: 600px;
     padding-bottom: 300px;
     background-image: url("../img/headerback.jpg");
     background-size: cover;
