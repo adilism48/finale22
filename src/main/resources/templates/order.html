@@ -21,14 +21,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/}">Main</a>
+                    <a class="nav-link" href="#">Main</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/order}">Order</a>
+                    <a class="nav-link" href="#">Order</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"/>
+                </form>
             </ul>
         </div>
     </div>
@@ -37,21 +37,26 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-sm-12 align-self-center form-back">
-                <div class="row g-3">
-                    <h1 class="text-center">Ala-Too Shop</h1>
-                    <div class="line"></div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam omnis repellendus, asperiores
-                        expedita tenetur a sequi harum, quisquam quia adipisci minima? Sunt vitae quam assumenda
-                        distinctio repellat, error quasi ipsa dolor accusamus
-                        saepe quaerat possimus! Similique totam illum numquam at a molestias aspernatur quasi quaerat
-                        assumenda nostrum eum, sapiente quos voluptates officia sint dolorum dolore modi nulla ea itaque
-                        dicta nesciunt blanditiis quisquam.
-                        Ipsum cumque omnis nihil porro dolorem, nostrum doloribus nulla enim sint et officia! Corrupti
-                        numquam fuga, sint impedit iure molestias repellendus incidunt perferendis veniam. Quibusdam
-                        provident eligendi ab ullam. Nisi suscipit
-                        iure expedita doloremque recusandae, aliquam ipsam?
-                    </p>
-                </div>
+                <form class="row g-3" method="post">
+                    <h1 class="text-center">Order</h1>
+                    <div class="col-md-6">
+                        <label for="inputName" class="form-label">Firstname</label>
+                        <input type="text" class="form-control" id="inputName" name="name" onkeyup="chkFields()">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputSurname" class="form-label">Surname</label>
+                        <input type="text" class="form-control" id="inputSurname" name="surname" onkeyup="chkFields()">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputCardID" class="form-label">CardID</label>
+                        <input type="text" class="form-control" id="inputCardID" name="cardID" onkeyup="chkFields()">
+                    </div>
+                    <div class="row justify-content-center row g-3">
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-outline-dark" id="regBtn" name="regBtn" disabled>Register</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

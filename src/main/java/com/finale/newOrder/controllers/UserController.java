@@ -20,9 +20,11 @@ public class UserController {
 
     @GetMapping("/")
     public String main(Model model) {
-        Iterable<User> users = userInterface.findAll();
-        model.addAttribute("user", users);
-        model.addAttribute("title", "main page");
         return "index";
+    }
+
+    @GetMapping("/order")
+    public String order(Model model) {
+        return "order";
     }
 }

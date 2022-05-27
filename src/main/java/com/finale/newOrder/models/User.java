@@ -1,32 +1,40 @@
 package com.finale.newOrder.models;
 
-import javax.persistence.*;
 
-@Table(name = "users")
+import javax.persistence.*;
+import java.util.Set;
+
 @Entity
+@Table(name = "usr")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String card_id, password, order, order_info;
+    private String username;
+    private String password;
+    private boolean active;
 
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCard_id() {
-        return card_id;
-    }
-
-    public void setCard_id(String card_id) {
-        this.card_id = card_id;
     }
 
     public String getPassword() {
@@ -37,29 +45,19 @@ public class User {
         this.password = password;
     }
 
-    public String getOrder() {
-        return order;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setOrder(String order) {
-        this.order = order;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public String getOrder_info() {
-        return order_info;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setOrder_info(String order_info) {
-        this.order_info = order_info;
-    }
-
-    public User() {
-    }
-
-    public User(String card_id, String password, String order, String order_info) {
-        this.card_id = card_id;
-        this.password = password;
-        this.order = order;
-        this.order_info = order_info;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
