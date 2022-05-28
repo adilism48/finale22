@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/order")
-    public String order(Model model) {
+    public String order(Model model){
         return "order";
     }
 }

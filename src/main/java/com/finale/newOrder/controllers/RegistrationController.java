@@ -25,7 +25,7 @@ public class RegistrationController {
         User UsernameFromDb = userInterface.findByUsername(user.getUsername());
 
         if (UsernameFromDb != null) {
-            model.put("message", "User exists!");
+            model.put("message1", "User exists!");
             return "registration";
         }
 

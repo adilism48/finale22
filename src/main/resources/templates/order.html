@@ -39,23 +39,26 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-sm-12 align-self-center form-back">
-                <form class="row g-3" method="post">
+                <form class="row g-3" th:action="@{/order}" method="post">
                     <h1 class="text-center">Order</h1>
                     <div class="col-md-6">
-                        <label for="inputName" class="form-label">Firstname</label>
-                        <input type="text" class="form-control" id="inputName" name="name" onkeyup="chkFields()">
+                        <label for="inputOrder_info" class="form-label">Order Info</label>
+                        <input type="text" class="form-control" id="inputOrder_info" name="order_info">
                     </div>
                     <div class="col-md-6">
-                        <label for="inputSurname" class="form-label">Surname</label>
-                        <input type="text" class="form-control" id="inputSurname" name="surname" onkeyup="chkFields()">
+                        <label for="inputOrder_info" class="form-label">Order Info</label>
+                        <input type="text" class="form-control" id="inputOrder_status" name="order_status">
                     </div>
-                    <div class="col-12">
-                        <label for="inputCardID" class="form-label">CardID</label>
-                        <input type="text" class="form-control" id="inputCardID" name="cardID" onkeyup="chkFields()">
+                    <div th:each="element : ${order}">
+                        <h1 th:text="${element.order_info}"></h1>
                     </div>
+                    <div th:each="element : ${order}">
+                        <h1 th:text="${element.order_status}"></h1>
+                    </div>
+                    <p th:text="${message1}"></p>
                     <div class="row justify-content-center row g-3">
                         <div class="col-2">
-                            <button type="submit" class="btn btn-outline-dark" id="regBtn" name="regBtn" disabled>Register</button>
+                            <button type="submit" class="btn btn-outline-dark" id="regBtn" name="regBtn">Register</button>
                         </div>
                     </div>
                 </form>
