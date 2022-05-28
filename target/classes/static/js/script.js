@@ -1,7 +1,6 @@
 function chkFields() {
-    if(document.getElementById("inputName").value==="" ||
-        document.getElementById("inputSurname").value==="" ||
-        document.getElementById("inputCardID").value==="")
+    if(document.getElementById("inputUsername").value==="" ||
+        document.getElementById("inputPassword").value==="")
     {
         document.getElementById('regBtn').disabled = true;
     } else {
