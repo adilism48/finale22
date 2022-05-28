@@ -26,9 +26,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/order">Order</a>
                 </li>
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Sign Out"/>
-                </form>
+                <li class="nav-item align-middle d-flex justify-content-center">
+                    <form th:action="@{/logout}" method="post" class="align-middle d-flex justify-content-center">
+                        <input type="submit" class="sign-out align-middle" value="Sign Out"/>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
