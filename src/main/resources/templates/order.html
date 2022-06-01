@@ -25,9 +25,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Main</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Order</a>
-                </li>
                 <li class="nav-item align-middle d-flex justify-content-center">
                     <form th:action="@{/logout}" method="post" class="align-middle d-flex justify-content-center">
                         <input type="submit" class="sign-out align-middle" value="Sign Out"/>
@@ -42,16 +39,25 @@
         <div class="row">
             <div class="col-xl-6 col-sm-12 align-self-center form-back">
                 <form class="row g-3" th:method="POST" th:action="@{/order}" th:object="${orders}">
-                    <h1 class="text-center">Order</h1>
+                    <h1 class="text-center">About our product</h1>
+                    <div class="line"></div>
                     <div class="col-md-12">
-                        <label for="orderStatus" class="form-label">Order Info</label>
-                        <div>
-                            <input th:value="'order_' + ${nameVal}" type="hidden" class="form-control" id="orderStatus" name="username">
-                        </div>
+                        <input th:value="'order_' + ${orderStatus}" type="hidden" class="form-control" id="orderStatus"
+                               name="orderStatus">
+                    </div>
+                    <div class="col-md-12">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam omnis repellendus, asperiores
+                            expedita tenetur a sequi harum, quisquam quia adipisci minima? Sunt vitae quam assumenda
+                            distinctio repellat, error quasi ipsa dolor accusamus
+                            saepe quaerat possimus!
+                        </p>
+                        <p>You can take our product from A777 cabinet</p>
+                        <div class="line"></div>
+                        <h4 th:text="${orderStatusMsg}"></h4>
                     </div>
                     <div class="row justify-content-center row g-3">
                         <div class="col-2">
-                            <button type="submit" class="btn btn-outline-dark" id="OrderBtn" name="OrderBtn">Order
+                            <button type="submit" id="OrderBtn" name="OrderBtn" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">Order
                             </button>
                         </div>
                     </div>
@@ -62,19 +68,20 @@
 </header>
 
 
-<footer>
-    <h6 class="text-center">Ala-Too Shop</h6>
-</footer>
+    <footer>
+        <h6 class="text-center">Ala-Too Shop</h6>
+    </footer>
 
-<div th:each="user : ${users}">
-<script th:inline="javascript">
-    var userOrder = [[${user.username}]] null;
-    console.log(userOrder)
-</script>
-</div>
+    <div th:each="user : ${users}">
+        <script th:inline="javascript">
+            var userOrder = [[${user.username}]]
+            null;
+            console.log(userOrder)
+        </script>
+    </div>
 
-<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-<script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
 
 </body>
 </html>

@@ -35,7 +35,7 @@ public class UserController {
 
         model.addAttribute("orders", orders);
         model.addAttribute("users", users);
-        model.addAttribute("nameVal", username);
+        model.addAttribute("orderStatus", username);
         return "order";
     }
 
@@ -49,13 +49,13 @@ public class UserController {
 
         if(orderStatFromDb != null) {
             model.addAttribute("orderStatusMsg", "You have already ordered");
-            return "redirect:/order";
+            return "order";
         }
 
         order.setOrderStatus(orderStatus);
         order.setUser(user);
         orderInterface.save(order);
         userInterface.save(user);
-        return "redirect:/";
+        return "redirect:/order";
     }
 }
