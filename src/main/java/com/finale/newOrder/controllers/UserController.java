@@ -27,20 +27,31 @@ public class UserController {
     }
 
     @GetMapping("/order")
-    public String order(Model model) {
+    public String order(@AuthenticationPrincipal User user,
+                        Model model) {
         Iterable<User> users = userInterface.findAll();
         Iterable<Order> orders = orderInterface.findAll();
+        String username = user.getUsername();
+
         model.addAttribute("orders", orders);
         model.addAttribute("users", users);
+        model.addAttribute("nameVal", username);
         return "order";
     }
 
     @PostMapping("/order")
     public String addOrder(@AuthenticationPrincipal User user,
-                           @RequestParam("orderStatus") String orderStatus) {
-        Order order = new Order(orderStatus, user);
+                           @RequestParam(value = "orderStatus", required = false) String orderStatus,
+                           Model model) {
 
-        user.setOrder(order);
+        Order order = new Order(orderStatus, user);
+        Order orderStatFromDb = orderInterface.findByOrderStatus(order.getOrderStatus());
+
+        if(orderStatFromDb != null) {
+            model.addAttribute("orderStatusMsg", "You have already ordered");
+            return "redirect:/order";
+        }
+
         order.setOrderStatus(orderStatus);
         order.setUser(user);
         orderInterface.save(order);

@@ -20,32 +20,11 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private boolean active;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id")
-    private Order order;
-
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -67,17 +46,26 @@ public class User implements UserDetails {
         return isActive();
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPassword() {
@@ -108,8 +96,7 @@ public class User implements UserDetails {
 
     }
 
-    public User(String username, Order order) {
+    public User(String username) {
         this.username = username;
-        this.order = order;
     }
 }

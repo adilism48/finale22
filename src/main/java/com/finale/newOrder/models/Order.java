@@ -11,7 +11,6 @@ public class Order {
     private Long id;
 
     private String orderStatus;
-
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
@@ -44,11 +43,7 @@ public class Order {
 
     }
 
-    public Order(Long id) {
-        this.id = id;
-    }
-
-    public Order( String status, User user) {
+    public Order(String status, User user) {
         this.orderStatus = status;
         this.user = user;
     }
