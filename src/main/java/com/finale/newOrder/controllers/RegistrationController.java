@@ -1,15 +1,16 @@
 package com.finale.newOrder.controllers;
 
 import com.finale.newOrder.interfaces.UserInterface;
+import com.finale.newOrder.models.Order;
 import com.finale.newOrder.models.Role;
 import com.finale.newOrder.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Collections;
-import java.util.Map;
 
 @Controller
 public class RegistrationController {
@@ -21,11 +22,11 @@ public class RegistrationController {
         return "registration";
     }
     @PostMapping("/registration")
-    public String addUser(User user, Map<String, Object> model) {
+    public String addUser(User user, Model model) {
         User UsernameFromDb = userInterface.findByUsername(user.getUsername());
 
         if (UsernameFromDb != null) {
-            model.put("message1", "User exists!");
+            model.addAttribute("message1", "User exists!");
             return "registration";
         }
 
