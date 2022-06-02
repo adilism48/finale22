@@ -6,15 +6,3 @@ function chkFields() {
         document.getElementById('regBtn').disabled = false;
     }
 }
-
-function chkDB() {
-    if (userOrder.value != null) {
-        document.getElementById('OrderBtn').disabled = true;
-    } else {
-        document.getElementById('OrderBtn').disabled = false;
-    }
-}
-
-function useVariable() {
-    var tempUsername = userInfo;
-}
